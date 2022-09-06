@@ -65,7 +65,7 @@ void loop() {
   display.clearDisplay();
 
   if (mqttClient.connected()) {
-    if (count >= 120) {
+    if (count >= 240) {
       pubMQTTmsg();
       count = 0;
     }
@@ -124,7 +124,7 @@ void pms5003t_spec() {
     c = pmsSerial.read();
     if ((count==0 && c!=0x42) || (count==1 && c!=0x4d)){
       Serial.println("Check failed");
-      OledPrintChar("Check failed", false, 56, 0);
+      OledPrintChar("Failed", false, 80, 0);
       break;
     }
     if(count > 27){
@@ -222,7 +222,7 @@ void OledPrintInt(int x, boolean y, int i, int l) {
 }
 
 void wifiSetUp() {
-  wifiMulti.addAP("fangyuyuan1", "04042325");
+  wifiMulti.addAP("fangyuyuan3", "04042325");
 
   int i = 0;
   while (wifiMulti.run() != WL_CONNECTED) {
